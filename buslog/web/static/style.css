@@ -1,7 +1,7 @@
-/* BusLog V2.1 - Tactical Command Interface */
+/* BusLog V2.3 - Tactical Command Interface with Theme Switcher */
 
 :root {
-    /* Core Colors */
+    /* Core Colors - Dark Theme (default) */
     --bg-primary: #262624;
     --bg-secondary: #2e2e2c;
     --bg-tertiary: #1a1a18;
@@ -45,6 +45,17 @@
     --radius-md: 4px;
 }
 
+/* Light Theme */
+[data-theme="light"] {
+    --bg-primary: #F5F5F5;
+    --bg-secondary: #FFFFFF;
+    --bg-tertiary: #E8E8E8;
+    --text-primary: #1a1a18;
+    --text-secondary: #666666;
+    --text-muted: #999999;
+    --border-color: #D0D0D0;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -59,6 +70,19 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     letter-spacing: var(--letter-spacing);
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* ==================== GLOBAL LINK STYLE - FIX BLUE LINKS ==================== */
+
+a {
+    color: var(--accent-primary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+a:hover {
+    color: var(--accent-hover);
 }
 
 .container {
@@ -78,6 +102,17 @@ header {
     z-index: 100;
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-lg);
+}
+
+.header-title {
+    flex: 1;
+}
+
 header h1 {
     font-size: var(--font-size-xl);
     font-weight: 700;
@@ -93,6 +128,38 @@ header h1 {
     color: var(--text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.1em;
+}
+
+/* ==================== THEME SWITCHER ==================== */
+
+.theme-switcher {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    background: var(--bg-secondary);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.theme-switcher:hover {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.15);
+}
+
+.theme-switcher-label {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.theme-switcher-icon {
+    font-size: var(--font-size-lg);
+    color: var(--accent-primary);
 }
 
 .back-link {
@@ -113,6 +180,14 @@ header h1 {
 .back-link:hover {
     border-color: var(--accent-primary);
     background: rgba(252, 230, 148, 0.05);
+}
+
+.header-title .back-link {
+    margin-bottom: var(--space-sm);
+}
+
+.header-title h1 {
+    margin-top: 0;
 }
 
 /* ==================== STATS GRID ==================== */

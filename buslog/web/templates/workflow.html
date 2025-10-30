@@ -11,8 +11,16 @@
 <body>
     <header>
         <div class="container">
-            <a href="/" class="back-link">← Back to All Workflows</a>
-            <h1>{{ workflow_name }}</h1>
+            <div class="header-content">
+                <div class="header-title">
+                    <a href="/" class="back-link">← Back to All Workflows</a>
+                    <h1>{{ workflow_name }}</h1>
+                </div>
+                <div class="theme-switcher" onclick="toggleTheme()">
+                    <span class="theme-switcher-icon" id="theme-icon">☀️</span>
+                    <span class="theme-switcher-label" id="theme-label">Light</span>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -44,6 +52,38 @@
     </main>
 
     <script>
+        // Theme Switcher
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme') || 'dark';
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('buslog-theme', newTheme);
+
+            // Update button
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+
+            if (newTheme === 'light') {
+                icon.textContent = '🌙';
+                label.textContent = 'Dark';
+            } else {
+                icon.textContent = '☀️';
+                label.textContent = 'Light';
+            }
+        }
+
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('buslog-theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.body.setAttribute('data-theme', 'light');
+                document.getElementById('theme-icon').textContent = '🌙';
+                document.getElementById('theme-label').textContent = 'Dark';
+            }
+        });
+
         // Initialize Mermaid
         mermaid.initialize({ startOnLoad: true, theme: 'default' });
 
