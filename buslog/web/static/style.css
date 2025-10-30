@@ -1,38 +1,47 @@
-/* BusLog V2 - Tactical Command Center Interface */
+/* BusLog V2.1 - Tactical Command Interface */
 
 :root {
-    /* Claude Dark Colors */
+    /* Core Colors */
     --bg-primary: #262624;
     --bg-secondary: #2e2e2c;
-    --bg-tertiary: #3a3a37;
-    --text-primary: #C1C1C1;
-    --text-secondary: #8e8e8e;
+    --bg-tertiary: #1a1a18;
+    --text-primary: #FFFFFF;
+    --text-secondary: #999999;
     --text-muted: #666666;
 
-    /* Accent Colors */
-    --accent-cyan: #00d4ff;
-    --accent-blue: #4a9eff;
-    --accent-green: #00ff88;
-    --accent-orange: #ff9500;
-    --accent-red: #ff5252;
+    /* Tactical Accent - Gold */
+    --accent-primary: #FCE694;
+    --accent-hover: #FFD700;
+    --accent-dim: rgba(252, 230, 148, 0.3);
 
-    /* Borders & Shadows */
-    --border-color: #404040;
-    --border-active: #00d4ff;
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
-    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
-    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+    /* Status Colors */
+    --status-success: #00FF00;
+    --status-warning: #FFA500;
+    --status-error: #FF0000;
 
-    /* Spacing */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 1rem;
-    --spacing-md: 1.5rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 3rem;
+    /* Borders & Structure */
+    --border-color: #333333;
+    --border-active: #FCE694;
+    --border-width: 1px;
 
     /* Typography */
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
-    --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+    --font-size-base: 14px;
+    --font-size-sm: 12px;
+    --font-size-lg: 16px;
+    --font-size-xl: 20px;
+    --letter-spacing: 0.05em;
+
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+
+    /* Border Radius */
+    --radius-sm: 2px;
+    --radius-md: 4px;
 }
 
 * {
@@ -42,88 +51,86 @@
 }
 
 body {
-    font-family: var(--font-sans);
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
     background: var(--bg-primary);
     color: var(--text-primary);
-    line-height: 1.7;
+    line-height: 1.6;
     overflow-x: hidden;
+    letter-spacing: var(--letter-spacing);
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
-    padding: 0 var(--spacing-lg);
+    padding: 0 var(--space-lg);
 }
 
 /* ==================== HEADER ==================== */
 
 header {
-    background: var(--bg-secondary);
-    border-bottom: 2px solid var(--border-color);
-    padding: var(--spacing-lg) 0;
+    background: var(--bg-tertiary);
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: var(--space-lg) 0;
     position: sticky;
     top: 0;
     z-index: 100;
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow-md);
 }
 
 header h1 {
-    font-size: 2.5rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
-    color: var(--accent-cyan);
-    letter-spacing: -0.02em;
+    color: var(--accent-primary);
     text-transform: uppercase;
-    margin-bottom: var(--spacing-xs);
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-sm);
     font-family: var(--font-mono);
 }
 
 .subtitle {
-    font-size: 1rem;
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
-    font-family: var(--font-mono);
-    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--accent-cyan);
+    gap: var(--space-sm);
+    color: var(--accent-primary);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-family: var(--font-mono);
-    margin-bottom: var(--spacing-md);
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border: var(--border-width) solid var(--border-color);
+    border-radius: var(--radius-sm);
     transition: all 0.2s ease;
+    text-transform: uppercase;
 }
 
 .back-link:hover {
-    background: var(--bg-tertiary);
-    border-color: var(--accent-cyan);
-    transform: translateX(-4px);
+    border-color: var(--accent-primary);
+    background: rgba(252, 230, 148, 0.05);
 }
 
 /* ==================== STATS GRID ==================== */
 
 .stats {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-md);
-    margin: var(--spacing-xl) 0;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--border-width);
+    margin: var(--space-xl) 0;
+    background: var(--border-color);
+    border: var(--border-width) solid var(--border-color);
 }
 
 .stat-card {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    padding: var(--space-lg);
     text-align: center;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s ease;
     position: relative;
-    overflow: hidden;
 }
 
 .stat-card::before {
@@ -132,17 +139,15 @@ header h1 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 3px;
-    background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+    height: 2px;
+    background: var(--accent-primary);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.3s ease;
 }
 
 .stat-card:hover {
-    border-color: var(--accent-cyan);
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-4px);
+    background: var(--bg-tertiary);
 }
 
 .stat-card:hover::before {
@@ -150,103 +155,94 @@ header h1 {
 }
 
 .stat-value {
-    font-size: 3rem;
+    font-size: 48px;
     font-weight: 700;
-    color: var(--accent-cyan);
+    color: var(--accent-primary);
     font-family: var(--font-mono);
-    margin-bottom: var(--spacing-xs);
-    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    margin-bottom: var(--space-sm);
+    line-height: 1;
 }
 
 .stat-label {
-    font-size: 0.95rem;
+    font-size: var(--font-size-sm);
     color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 500;
+    letter-spacing: 0.15em;
 }
 
 /* ==================== WORKFLOWS SECTION ==================== */
 
 .workflows {
-    margin: var(--spacing-xl) 0;
+    margin: var(--space-xl) 0;
 }
 
 .workflows h2 {
-    font-size: 2rem;
-    color: var(--accent-cyan);
-    margin-bottom: var(--spacing-lg);
-    font-family: var(--font-mono);
+    font-size: var(--font-size-lg);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-lg);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    border-left: 4px solid var(--accent-cyan);
-    padding-left: var(--spacing-md);
+    letter-spacing: 0.15em;
+    border-left: 2px solid var(--accent-primary);
+    padding-left: var(--space-md);
 }
 
 .workflow-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-md);
+    gap: var(--border-width);
+    background: var(--border-color);
+    border: var(--border-width) solid var(--border-color);
 }
 
 .workflow-card {
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
 }
 
 .workflow-card:hover {
-    border-color: var(--accent-cyan);
-    box-shadow: var(--shadow-md);
+    background: var(--bg-tertiary);
 }
 
 .workflow-header {
-    padding: var(--spacing-lg);
+    padding: var(--space-md) var(--space-lg);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
     user-select: none;
-    transition: background 0.2s ease;
-    border-left: 4px solid transparent;
+    border-left: 2px solid transparent;
+    transition: border-color 0.2s ease;
 }
 
 .workflow-header:hover {
-    background: var(--bg-tertiary);
-    border-left-color: var(--accent-cyan);
+    border-left-color: var(--accent-primary);
 }
 
 .workflow-header h3 {
-    font-size: 1.4rem;
+    font-size: var(--font-size-base);
     color: var(--text-primary);
     font-weight: 600;
-    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .toggle-icon {
-    color: var(--accent-cyan);
-    font-size: 1.5rem;
-    transition: transform 0.3s ease;
-    font-family: var(--font-mono);
-}
-
-.workflow-header:hover .toggle-icon {
-    transform: scale(1.2);
+    color: var(--accent-primary);
+    font-size: var(--font-size-lg);
+    transition: transform 0.2s ease;
 }
 
 .workflow-content {
     padding: 0;
-    border-top: 1px solid var(--border-color);
-    background: var(--bg-primary);
+    border-top: var(--border-width) solid var(--border-color);
+    background: var(--bg-tertiary);
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
+    transition: max-height 0.3s ease;
 }
 
 .workflow-content[style*="display: block"] {
-    padding: var(--spacing-lg);
+    padding: var(--space-lg);
     max-height: 10000px;
 }
 
@@ -254,75 +250,73 @@ header h1 {
 
 .workflow-detail {
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
+    border: var(--border-width) solid var(--border-color);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
     line-height: 1.8;
 }
 
 .workflow-detail h1 {
-    color: var(--accent-cyan);
-    margin-bottom: var(--spacing-lg);
-    font-size: 2.5rem;
-    font-family: var(--font-mono);
-    border-bottom: 2px solid var(--border-color);
-    padding-bottom: var(--spacing-md);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-lg);
+    font-size: var(--font-size-xl);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding-bottom: var(--space-md);
 }
 
 .workflow-detail h2 {
-    color: var(--accent-blue);
-    margin-top: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
-    font-size: 1.8rem;
-    font-family: var(--font-mono);
-    border-left: 4px solid var(--accent-blue);
-    padding-left: var(--spacing-md);
+    color: var(--accent-primary);
+    margin-top: var(--space-xl);
+    margin-bottom: var(--space-md);
+    font-size: var(--font-size-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-left: 2px solid var(--accent-primary);
+    padding-left: var(--space-md);
 }
 
 .workflow-detail h3 {
     color: var(--text-primary);
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.3rem;
-    font-weight: 600;
+    margin-top: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-base);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 .workflow-detail p {
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--space-md);
     color: var(--text-primary);
 }
 
 .workflow-detail ul,
 .workflow-detail ol {
-    margin-left: var(--spacing-xl);
-    margin-bottom: var(--spacing-md);
+    margin-left: var(--space-xl);
+    margin-bottom: var(--space-md);
 }
 
 .workflow-detail li {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--space-sm);
     color: var(--text-primary);
-    padding-left: var(--spacing-sm);
 }
 
 .workflow-detail code {
     background: var(--bg-tertiary);
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
+    padding: 2px 6px;
+    border: var(--border-width) solid var(--border-color);
     font-family: var(--font-mono);
-    font-size: 0.9rem;
-    color: var(--accent-green);
-    border: 1px solid var(--border-color);
+    font-size: var(--font-size-sm);
+    color: var(--accent-primary);
 }
 
 .workflow-detail pre {
     background: var(--bg-tertiary);
-    padding: var(--spacing-lg);
-    border-radius: 8px;
+    padding: var(--space-md);
+    border: var(--border-width) solid var(--border-color);
     overflow-x: auto;
-    margin: var(--spacing-lg) 0;
-    border: 1px solid var(--border-color);
-    box-shadow: var(--shadow-sm);
+    margin: var(--space-md) 0;
 }
 
 .workflow-detail pre code {
@@ -333,74 +327,113 @@ header h1 {
 }
 
 .workflow-detail strong {
-    color: var(--accent-cyan);
-    font-weight: 600;
+    color: var(--accent-primary);
+    font-weight: 700;
 }
 
-/* ==================== MERMAID DIAGRAMS ==================== */
+/* ==================== MERMAID DIAGRAMS - FIXED ==================== */
 
 .mermaid {
-    margin: var(--spacing-xl) 0;
-    padding: var(--spacing-lg);
+    margin: var(--space-xl) 0;
+    padding: var(--space-lg);
     background: var(--bg-tertiary);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
+    border: var(--border-width) solid var(--border-color);
     text-align: center;
+    overflow-x: auto;
+}
+
+/* Force Mermaid elements to be visible */
+.mermaid svg {
+    max-width: 100%;
+    height: auto;
+    filter: none !important;
+}
+
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon {
+    fill: var(--bg-secondary) !important;
+    stroke: var(--accent-primary) !important;
+    stroke-width: 2px !important;
+}
+
+.mermaid .node .label {
+    color: var(--text-primary) !important;
+    fill: var(--text-primary) !important;
+}
+
+.mermaid .edgeLabel {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-secondary) !important;
+    fill: var(--text-secondary) !important;
+}
+
+.mermaid .edgePath .path {
+    stroke: var(--accent-primary) !important;
+    stroke-width: 2px !important;
+}
+
+.mermaid .marker {
+    fill: var(--accent-primary) !important;
+    stroke: var(--accent-primary) !important;
+}
+
+.mermaid text {
+    fill: var(--text-primary) !important;
+    font-family: var(--font-mono) !important;
 }
 
 /* ==================== ANNOTATIONS ==================== */
 
 .annotations {
     background: var(--bg-secondary);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: var(--spacing-xl);
-    margin-bottom: var(--spacing-xl);
+    border: var(--border-width) solid var(--border-color);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
 }
 
 .annotations h2 {
-    color: var(--accent-cyan);
-    margin-bottom: var(--spacing-lg);
-    font-family: var(--font-mono);
+    color: var(--accent-primary);
+    margin-bottom: var(--space-lg);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 #annotations-list {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--space-lg);
 }
 
 .annotation {
     background: var(--bg-tertiary);
-    padding: var(--spacing-md);
-    border-radius: 8px;
-    margin-bottom: var(--spacing-sm);
-    border-left: 3px solid var(--accent-blue);
+    padding: var(--space-md);
+    margin-bottom: var(--space-sm);
+    border-left: 2px solid var(--accent-primary);
 }
 
 .annotation p {
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--space-sm);
     color: var(--text-primary);
 }
 
 .annotation small {
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
 }
 
 .annotation-form {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-sm);
+    gap: var(--space-sm);
 }
 
 .annotation-form textarea {
-    padding: var(--spacing-md);
+    padding: var(--space-md);
     background: var(--bg-tertiary);
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
+    border: var(--border-width) solid var(--border-color);
     color: var(--text-primary);
-    font-family: var(--font-sans);
-    font-size: 1rem;
+    font-family: var(--font-mono);
+    font-size: var(--font-size-base);
     resize: vertical;
     min-height: 100px;
     transition: border-color 0.2s ease;
@@ -408,116 +441,107 @@ header h1 {
 
 .annotation-form textarea:focus {
     outline: none;
-    border-color: var(--accent-cyan);
-    box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+    border-color: var(--accent-primary);
 }
 
 .annotation-form button {
-    padding: var(--spacing-md) var(--spacing-lg);
-    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    padding: var(--space-md) var(--space-lg);
+    background: var(--accent-primary);
     color: #000;
     border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: var(--font-size-sm);
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.2s ease;
     align-self: flex-start;
     font-family: var(--font-mono);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.15em;
 }
 
 .annotation-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 212, 255, 0.3);
-}
-
-.annotation-form button:active {
-    transform: translateY(0);
+    background: var(--accent-hover);
 }
 
 /* ==================== EMPTY STATE ==================== */
 
 .empty-state {
     text-align: center;
-    padding: var(--spacing-xl);
+    padding: var(--space-xl);
     background: var(--bg-secondary);
-    border: 1px dashed var(--border-color);
-    border-radius: 12px;
-    margin: var(--spacing-xl) 0;
+    border: var(--border-width) dashed var(--border-color);
+    margin: var(--space-xl) 0;
 }
 
 .empty-state p {
-    font-size: 1.2rem;
+    font-size: var(--font-size-base);
     color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
 }
 
 .empty-state .hint {
-    font-size: 0.95rem;
+    font-size: var(--font-size-sm);
     color: var(--text-muted);
-    font-family: var(--font-mono);
 }
 
 .empty-state code {
     background: var(--bg-tertiary);
-    padding: 0.3rem 0.6rem;
-    border-radius: 4px;
-    font-family: var(--font-mono);
-    color: var(--accent-green);
+    padding: 2px 6px;
+    border: var(--border-width) solid var(--border-color);
+    color: var(--accent-primary);
 }
 
 /* ==================== LOADING & ERROR ==================== */
 
 .loading {
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: var(--space-lg);
     color: var(--text-secondary);
-    font-family: var(--font-mono);
+    text-transform: uppercase;
     animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-    0%, 100% { opacity: 0.6; }
+    0%, 100% { opacity: 0.4; }
     50% { opacity: 1; }
 }
 
 .error {
-    color: var(--accent-red);
-    padding: var(--spacing-md);
-    background: rgba(255, 82, 82, 0.1);
-    border: 1px solid var(--accent-red);
-    border-radius: 8px;
-    font-family: var(--font-mono);
+    color: var(--status-error);
+    padding: var(--space-md);
+    background: rgba(255, 0, 0, 0.1);
+    border: var(--border-width) solid var(--status-error);
 }
 
 /* ==================== FOOTER ==================== */
 
 footer {
     text-align: center;
-    padding: var(--spacing-xl) 0;
+    padding: var(--space-xl) 0;
     color: var(--text-secondary);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
-    margin-top: var(--spacing-xl);
-    font-family: var(--font-mono);
+    font-size: var(--font-size-sm);
+    border-top: var(--border-width) solid var(--border-color);
+    margin-top: var(--space-xl);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
 }
 
 footer a {
-    color: var(--accent-cyan);
+    color: var(--accent-primary);
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
 footer a:hover {
-    color: var(--accent-blue);
+    color: var(--accent-hover);
 }
 
 /* ==================== SCROLLBAR ==================== */
 
 ::-webkit-scrollbar {
-    width: 12px;
+    width: 8px;
+    height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -525,58 +549,58 @@ footer a:hover {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: var(--bg-tertiary);
-    border-radius: 6px;
-    border: 2px solid var(--bg-primary);
+    background: var(--border-color);
+    border: 1px solid var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: var(--border-color);
+    background: var(--accent-primary);
 }
 
 /* ==================== RESPONSIVE ==================== */
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 var(--spacing-md);
+        padding: 0 var(--space-md);
     }
 
     header h1 {
-        font-size: 2rem;
+        font-size: var(--font-size-lg);
     }
 
     .stat-value {
-        font-size: 2.5rem;
+        font-size: 36px;
     }
 
     .workflow-header h3 {
-        font-size: 1.1rem;
-    }
-
-    .workflows h2 {
-        font-size: 1.5rem;
+        font-size: var(--font-size-sm);
     }
 }
 
-/* ==================== ANIMATIONS ==================== */
+/* ==================== TACTICAL EFFECTS ==================== */
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Scanline effect (subtle) */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(0, 0, 0, 0.02) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
 }
 
-.workflow-card {
-    animation: fadeIn 0.5s ease;
+/* Glow effect on hover for interactive elements */
+.workflow-card:hover,
+.stat-card:hover,
+.back-link:hover {
+    box-shadow: 0 0 20px rgba(252, 230, 148, 0.1);
 }
-
-.workflow-card:nth-child(1) { animation-delay: 0.1s; }
-.workflow-card:nth-child(2) { animation-delay: 0.2s; }
-.workflow-card:nth-child(3) { animation-delay: 0.3s; }
-.workflow-card:nth-child(4) { animation-delay: 0.4s; }
-.workflow-card:nth-child(5) { animation-delay: 0.5s; }
