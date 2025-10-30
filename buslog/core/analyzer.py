@@ -6,12 +6,13 @@ Performs static analysis of codebases to detect patterns and structures.
 
 import re
 from pathlib import Path
+from typing import Optional
 
 
 class CodeAnalyzer:
     """Analyzes code structure and patterns."""
 
-    def __init__(self, project_root: Path | None = None):
+    def __init__(self, project_root: Optional[Path] = None):
         """Initialize CodeAnalyzer.
 
         Args:

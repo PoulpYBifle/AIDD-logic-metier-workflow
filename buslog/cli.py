@@ -6,6 +6,7 @@ Main entry point for the BusLog tool.
 
 import sys
 from pathlib import Path
+from typing import Optional
 
 import typer
 from rich.console import Console
@@ -26,7 +27,7 @@ console = Console()
 
 @app.command()
 def init(
-    project_name: str | None = typer.Option(None, "--name", "-n", help="Project name"),
+    project_name: Optional[str] = typer.Option(None, "--name", "-n", help="Project name"),
     force: bool = typer.Option(False, "--force", "-f", help="Force re-initialization"),
 ):
     """
@@ -118,7 +119,9 @@ def list():
 
 @app.command()
 def analyze(
-    output: Path | None = typer.Option(None, "--output", "-o", help="Output file for the prompt"),
+    output: Optional[Path] = typer.Option(
+        None, "--output", "-o", help="Output file for the prompt"
+    ),
 ):
     """
     Generate an AI prompt to analyze the codebase for business logic workflows.

@@ -6,12 +6,13 @@ Generates AI prompts for analyzing codebases and detecting business logic workfl
 
 import json
 from pathlib import Path
+from typing import Optional
 
 
 class PromptGenerator:
     """Generates prompts for AI coding assistants."""
 
-    def __init__(self, project_root: Path | None = None):
+    def __init__(self, project_root: Optional[Path] = None):
         """Initialize PromptGenerator.
 
         Args:

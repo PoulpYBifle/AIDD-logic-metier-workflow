@@ -7,6 +7,7 @@ Handles CRUD operations for business logic workflows.
 import json
 from datetime import datetime
 from pathlib import Path
+from typing import Optional
 
 
 class WorkflowManager:
@@ -17,7 +18,7 @@ class WorkflowManager:
     CONFIG_FILE = "config.json"
     INDEX_FILE = "index.md"
 
-    def __init__(self, project_root: Path | None = None):
+    def __init__(self, project_root: Optional[Path] = None):
         """Initialize WorkflowManager.
 
         Args:
@@ -35,7 +36,7 @@ class WorkflowManager:
             self.buslog_path.exists() and self.config_path.exists() and self.workflows_path.exists()
         )
 
-    def initialize(self, project_name: str | None = None, force: bool = False) -> None:
+    def initialize(self, project_name: Optional[str] = None, force: bool = False) -> None:
         """Initialize BusLog structure in the project.
 
         Args:
