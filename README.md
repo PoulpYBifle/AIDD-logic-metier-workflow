@@ -76,8 +76,8 @@ buslog serve             # Launch web interface
 
 ```bash
 # Clone the repository
-git clone https://github.com/PoulpYBifle/AIDD-logic-metier-workflow.git
-cd AIDD-logic-metier-workflow
+git clone https://github.com/PoulpYBifle/BusLog.git
+cd BusLog
 
 # Install in development mode
 pip install -e .
@@ -92,6 +92,70 @@ pip install -r requirements.txt
 buslog version
 # Output: BusLog version 0.1.0
 ```
+
+---
+
+## 🐛 Troubleshooting
+
+### Windows: RuntimeError with `buslog` command
+
+**Problem**: When running `buslog init` on Windows, you may encounter:
+```
+RuntimeError: Type not yet supported: str | None
+```
+
+**Solution**: Use `python -m buslog.cli` instead of the `buslog` command:
+
+```bash
+# Instead of:
+buslog init --name="My Project"
+
+# Use:
+python -m buslog.cli init --name="My Project"
+```
+
+This ensures compatibility with Typer's type system on Windows.
+
+### Command argument parsing with spaces
+
+**Problem**:
+```
+Got unexpected extra argument (My Project)
+```
+
+**Solution**: Use quotes with equals sign or escape properly:
+
+```bash
+# ✅ Correct:
+buslog init --name="My Project"
+python -m buslog.cli init --name="My Project"
+
+# ✅ Also correct (prompts for name):
+buslog init
+
+# ❌ Wrong:
+buslog init --name "My Project"
+```
+
+### Port already in use
+
+**Problem**:
+```
+OSError: [Errno 48] Address already in use
+```
+
+**Solution**: Use a different port:
+
+```bash
+buslog serve --port 8081
+```
+
+### Mermaid diagrams not rendering in web interface
+
+**Solution**:
+- Ensure you're using a modern browser (Chrome, Firefox, Edge, Safari)
+- Clear browser cache and reload the page
+- Check browser console for JavaScript errors
 
 ---
 
