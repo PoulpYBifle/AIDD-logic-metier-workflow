@@ -1,0 +1,25 @@
+{
+  "project_name": "BusLog",
+  "version": "0.1.0",
+  "created_at": "2025-10-30T10:32:13.427911",
+  "languages": [
+    "JavaScript",
+    "Python"
+  ],
+  "frameworks": [],
+  "workflows": [
+    "cli-initialization",
+    "workflow-manager"
+  ],
+  "settings": {
+    "auto_detect": false,
+    "mermaid_theme": "default",
+    "show_line_numbers": true,
+    "collapse_by_default": false
+  },
+  "metadata": {
+    "repository": "",
+    "main_branch": "main",
+    "authors": []
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "project_name": "",
+  "version": "0.1.0",
+  "created_at": "",
+  "languages": [],
+  "frameworks": [],
+  "workflows": [],
+  "settings": {
+    "auto_detect": false,
+    "mermaid_theme": "default",
+    "show_line_numbers": true,
+    "collapse_by_default": false
+  },
+  "metadata": {
+    "repository": "",
+    "main_branch": "main",
+    "authors": []
+  }
+}

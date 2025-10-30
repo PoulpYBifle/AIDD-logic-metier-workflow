@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ workflow_name }} - BusLog</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="/" class="back-link">← Back to All Workflows</a>
+            <h1>{{ workflow_name }}</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <article id="workflow-content" class="workflow-detail">
+            <!-- Content will be rendered here -->
+        </article>
+
+        <section class="annotations">
+            <h2>💬 Annotations</h2>
+            <div id="annotations-list">
+                {% if annotations %}
+                    {% for annotation in annotations %}
+                    <div class="annotation">
+                        <p>{{ annotation.text }}</p>
+                        <small>{{ annotation.author }} - {{ annotation.date }}</small>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="empty">No annotations yet</p>
+                {% endif %}
+            </div>
+
+            <div class="annotation-form">
+                <textarea id="annotation-text" placeholder="Add your annotation..."></textarea>
+                <button onclick="saveAnnotation()">Add Annotation</button>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({ startOnLoad: true, theme: 'default' });
+
+        // Render workflow content
+        const workflowContent = {{ workflow_content|tojson }};
+        const contentDiv = document.getElementById('workflow-content');
+        contentDiv.innerHTML = marked.parse(workflowContent);
+
+        // Render Mermaid diagrams
+        const mermaidBlocks = contentDiv.querySelectorAll('code.language-mermaid');
+        mermaidBlocks.forEach((block) => {
+            const mermaidDiv = document.createElement('div');
+            mermaidDiv.className = 'mermaid';
+            mermaidDiv.textContent = block.textContent;
+            block.parentElement.replaceWith(mermaidDiv);
+        });
+
+        // Re-run Mermaid
+        mermaid.init(undefined, contentDiv.querySelectorAll('.mermaid'));
+
+        // Save annotation
+        async function saveAnnotation() {
+            const text = document.getElementById('annotation-text').value;
+            if (!text.trim()) return;
+
+            try {
+                const response = await fetch(`/api/workflows/{{ workflow_name }}/annotations`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        annotations: [
+                            ...{{ annotations|tojson }},
+                            {
+                                text: text,
+                                author: 'User',
+                                date: new Date().toISOString().split('T')[0]
+                            }
+                        ]
+                    })
+                });
+
+                if (response.ok) {
+                    location.reload();
+                }
+            } catch (error) {
+                alert('Error saving annotation: ' + error.message);
+            }
+        }
+    </script>
+</body>
+</html>
