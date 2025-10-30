@@ -329,37 +329,6 @@ pytest
 
 ---
 
-## 🗺️ Roadmap
-
-### v0.1 (Current)
-- ✅ Core CLI functionality
-- ✅ Workflow management (CRUD)
-- ✅ AI prompt generation
-- ✅ Web interface with Mermaid.js
-- ✅ Annotation system
-
-### v0.2 (Planned)
-- [ ] Export to PDF/HTML
-- [ ] Dependency graph visualization
-- [ ] Multi-language code analysis
-- [ ] Git integration (auto-detect changes)
-- [ ] Workflow templates library
-
-### v0.3 (Future)
-- [ ] Multi-repo support
-- [ ] Team collaboration features
-- [ ] CI/CD integration
-- [ ] VS Code extension
-- [ ] Cloud sync (optional)
-
-### v1.0 (Goal)
-- [ ] Stable API
-- [ ] Plugin system
-- [ ] Advanced AI integrations
-- [ ] Enterprise features
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! This project is in active development.
@@ -383,13 +352,6 @@ We follow [Conventional Commits](https://www.conventionalcommits.org/):
 - `refactor:` Code refactoring
 - `test:` Adding tests
 - `chore:` Maintenance tasks
-
----
-
-## 📝 License
-
-This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
-
 ---
 
 ## 🙏 Acknowledgments
@@ -400,19 +362,10 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ---
 
-## 📧 Contact
-
-**Created by PoulpYBifle**
-
-- Email: contact@sachapreneur.fr
-- GitHub: [@PoulpYBifle](https://github.com/PoulpYBifle)
-
----
-
 <div align="center">
 
 **⭐ Star this repo if you find it useful!**
 
-Made with ❤️ and AI assistance
+Made with ❤️ and Claudio le sangcho.
 
 </div>
