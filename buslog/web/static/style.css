@@ -9,10 +9,11 @@
     --text-secondary: #999999;
     --text-muted: #666666;
 
-    /* Tactical Accent - Gold */
-    --accent-primary: #FCE694;
+    /* Tactical Accent - Gold (darker for readability) */
+    --accent-primary: #D4AF37;
     --accent-hover: #FFD700;
-    --accent-dim: rgba(252, 230, 148, 0.3);
+    --accent-dim: rgba(212, 175, 55, 0.3);
+    --accent-bright: #FCE694;
 
     /* Status Colors */
     --status-success: #00FF00;
@@ -33,11 +34,11 @@
     --letter-spacing: 0.05em;
 
     /* Spacing */
-    --space-xs: 4px;
-    --space-sm: 8px;
-    --space-md: 16px;
-    --space-lg: 24px;
-    --space-xl: 32px;
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 32px;
+    --space-xl: 48px;
 
     /* Border Radius */
     --radius-sm: 2px;
@@ -253,7 +254,7 @@ header h1 {
     border: var(--border-width) solid var(--border-color);
     padding: var(--space-xl);
     margin-bottom: var(--space-xl);
-    line-height: 1.8;
+    line-height: 2;
 }
 
 .workflow-detail h1 {
@@ -298,8 +299,9 @@ header h1 {
 }
 
 .workflow-detail li {
-    margin-bottom: var(--space-sm);
+    margin-bottom: var(--space-md);
     color: var(--text-primary);
+    line-height: 1.8;
 }
 
 .workflow-detail code {
@@ -349,39 +351,67 @@ header h1 {
     filter: none !important;
 }
 
-.mermaid .node rect,
-.mermaid .node circle,
-.mermaid .node ellipse,
-.mermaid .node polygon {
-    fill: var(--bg-secondary) !important;
+/* Rectangles (process steps) - white background */
+.mermaid .node rect {
+    fill: #FFFFFF !important;
     stroke: var(--accent-primary) !important;
     stroke-width: 2px !important;
 }
 
-.mermaid .node .label {
-    color: var(--text-primary) !important;
-    fill: var(--text-primary) !important;
+/* Diamonds (decisions) - white background */
+.mermaid .node polygon {
+    fill: #FFFFFF !important;
+    stroke: var(--accent-primary) !important;
+    stroke-width: 2px !important;
 }
 
+/* Circles and ellipses - white background */
+.mermaid .node circle,
+.mermaid .node ellipse {
+    fill: #FFFFFF !important;
+    stroke: var(--accent-primary) !important;
+    stroke-width: 2px !important;
+}
+
+/* Text inside nodes - BLACK for contrast on white */
+.mermaid .node .label,
+.mermaid .nodeLabel {
+    color: #000000 !important;
+    fill: #000000 !important;
+    font-family: var(--font-mono) !important;
+    font-weight: 600 !important;
+}
+
+/* Edge labels (text on arrows) */
 .mermaid .edgeLabel {
     background-color: var(--bg-tertiary) !important;
-    color: var(--text-secondary) !important;
-    fill: var(--text-secondary) !important;
+    color: var(--accent-bright) !important;
+    fill: var(--accent-bright) !important;
+    font-family: var(--font-mono) !important;
 }
 
+/* Arrow paths */
 .mermaid .edgePath .path {
     stroke: var(--accent-primary) !important;
     stroke-width: 2px !important;
 }
 
+/* Arrow markers */
 .mermaid .marker {
     fill: var(--accent-primary) !important;
     stroke: var(--accent-primary) !important;
 }
 
-.mermaid text {
-    fill: var(--text-primary) !important;
-    font-family: var(--font-mono) !important;
+/* Error/special nodes - pink background */
+.mermaid .error-node rect,
+.mermaid .error-node polygon {
+    fill: #FFB6C1 !important;
+}
+
+/* Success nodes - light green background */
+.mermaid .success-node rect,
+.mermaid .success-node polygon {
+    fill: #90EE90 !important;
 }
 
 /* ==================== ANNOTATIONS ==================== */
@@ -602,5 +632,18 @@ body::after {
 .workflow-card:hover,
 .stat-card:hover,
 .back-link:hover {
-    box-shadow: 0 0 20px rgba(252, 230, 148, 0.1);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+}
+
+/* Links in workflow detail */
+.workflow-detail a {
+    color: var(--accent-primary);
+    text-decoration: underline;
+    text-decoration-color: rgba(212, 175, 55, 0.3);
+    transition: all 0.2s ease;
+}
+
+.workflow-detail a:hover {
+    color: var(--accent-bright);
+    text-decoration-color: var(--accent-bright);
 }
